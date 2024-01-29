@@ -30,7 +30,7 @@ def get_fruitvice_data(this_fruit_choice):
   return fruityvice_normalized
 
 def get_fruit_list():
-  with my_cnx.cursor() as myc_cur:
+  with my_cnx.cursor() as my_cur:
     my_cur.execute("select * from pc_rivery_db.public.fruit_load_list")
     return my_cur.fetchall()
   
@@ -53,7 +53,7 @@ if streamlit.button('Get Fruit Load List'):
 fruit_to_add  = streamlit.text_input('What fruit would you like to add?')
 try:
   if fruit_to_add:
-    with my_cnx.cursor() as myc_cur:
+    with my_cnx.cursor() as my_cur:
       my_cur.execute(f"insert into pc_rivery_db.public.fruit_load_list values('{fruit_to_add}')")
 except snowflake.connector.errors.ProgrammingError:
   pass
