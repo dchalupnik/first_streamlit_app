@@ -39,6 +39,7 @@ streamlit.dataframe(my_data_rows)
 
 fruit_to_add  = streamlit.text_input('What fruit would you like to add?')
 try:
-  my_cur.execute(f"insert into pc_rivery_db.public.fruit_load_list values('{fruit_to_add}')")
+  if fruit_to_add:
+    my_cur.execute(f"insert into pc_rivery_db.public.fruit_load_list values('{fruit_to_add}')")
 except snowflake.connector.errors.ProgrammingError:
   pass
